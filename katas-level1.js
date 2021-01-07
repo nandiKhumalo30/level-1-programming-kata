@@ -1,8 +1,7 @@
 function hello(str){
-    console.log('Hello ' + str)
- }
+    console.log(`Hello ${str}!`)
+}
  hello("Tshepo")
-
 
 function evenOrOdd(num){
     if (num % 2 == 0) {
@@ -13,73 +12,88 @@ function evenOrOdd(num){
 } 
 evenOrOdd(11)
 
-
-function square(rows) {
-    var num = "";
-    for (var y = 0; y < rows; y++) {
-        for (var x = 0; x < rows; x++) {
-                num += "#";
-        }
-        num += "\n";
-    }
-    console.log(num)
-}
-square(4)
-
-
-function rightHandedTriangle(rows) {
-    for (var i = 0; i <= rows; i++) {
-        num = '';
-        for (let k = 1; k <= i; k++) num += '#';
-        console.log(num);   
+function square(num){
+    let str;
+    for(let i = 0; i < num; i++){
+        str = '#'.repeat(num);
+        console.log(str);
     }
 }
+square(2);
+
+
+function rightHandedTriangle(num){
+    let str = '';
+    for(let i = 0; i < num; i++){
+        str += '#';
+        console.log(str);
+    }
+}        
 rightHandedTriangle(2);
 
 
-function isoscelesTriangle(rows) {
-    for (let i = 0; i < rows; i++) {
-        var num = '';
-        for (let j =0; j < rows - i; j++) num += ' ';
-        for (let k = 0; k <= i; k++) num += ' #';
-        console.log(num);  
+function isoscelesTriangle(num){
+    let str;
+    for(let i = 0; i < num; i++){ 
+        str = ' '.repeat(num - i) + '#'.repeat(i+i+1) + ' '.repeat(num - i);
+        console.log(str);
+    }
+}        
+isoscelesTriangle(2);
+
+function longest(arr){
+    let count
+    let newArr = []
+    for(let i = 0; i < arr.length; i++){
+        count = arr[i].length
+        newArr.push(count)
     } 
-}
-isoscelesTriangle(2)
-
-
-function longest(array){
-    var myArray = array[0]
-    for(let i = 0; i < array.length; i++){
-        if(array[i].length > myArray[i].length){
-            console.log(array[i])
-        } else if (myArray[i].length > array[i].length){
-            console.log(myArray)
-        }  
+    let checkMaxNum = Math.max(...newArr)
+    for(let j = 0; j < arr.length; j++){
+        if(checkMaxNum === arr[j].length){
+            console.log(arr[j])
+        } 
     }
 }
-longest(["once", "upon", "a", "time"])
+longest(['once', 'chicken', 'a', 'time'])
 
-
-function combine(arrOne, arrTwo){
-    var combinedArray = []
-    combinedArray.push(...arrOne, ...arrTwo)
-    for (i = 0; i > combinedArray; i++) {
-        arrOne[i] += arrTwo[i]
+function combine(a,b){
+    let arr = [];
+    let arr2 = [];
+    for(let i = 0; i < a.length ||i < b.length; i++){
+        arr = [a[i],b[i]];
+        arr2.push(arr);
     }
-    return combinedArray
+    let str = arr2.join(','); 
+    let arr3 = str.split(',');
+    let arrNum;
+    let arr4=[];
+    for(let j = 0; j < arr3.length; j++){
+        arrNum = parseInt(arr3[j]);
+        arr4.push(arrNum);
+
+    }
+    console.log(arr4);         
+    
 }
-console.log(combine([11,22,33], [1,2,3]))
+combine([11,22,33], [1,2,3]);
 
-
-function frame(array){
-    let stars = "*********"
-    console.log(stars)
-    for(let i = 0; i < array.length; i++){
-        let star = "* "
-        let list = star + array[i] + "\t" + star
+function frame(arr){
+    let star = '*'
+    let space = ' '
+    let count
+    let newArr = []
+    let list
+    for(let i = 0; i < arr.length; i++){
+        count = arr[i].length
+        newArr.push(count)
+    } 
+    let checkMaxNum = Math.max(...newArr)
+    console.log(star.repeat(checkMaxNum + 2))
+    for(let j = 0; j < arr.length; j++){
+        list = star + arr[j] + space.repeat(checkMaxNum-arr[j].length) + star
         console.log(list)
     }
-    console.log(stars)
+    console.log(star.repeat(checkMaxNum + 2))    
 }
 frame(["Write", "good", "code", "every", "day"])
